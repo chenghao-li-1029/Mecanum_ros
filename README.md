@@ -1035,40 +1035,42 @@ roslaunch sc_hw mecanum_keyboard.launch
 ### 3) Nodes
 #### sc_hw_node
 ROS node for driving the omnidirectional intelligent mobile platform
+
 ##### Subscribed Topics
-/mobile_base/mobile_base_controller/cmd_vel([geometry_msgs/Twist](http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html))\
-&emsp;Mobile platform motion velocity control topic, receives robot movement velocity commands
+- **`/mobile_base/mobile_base_controller/cmd_vel`** ([geometry_msgs/Twist](http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html))
+  - Mobile platform motion velocity control topic, receives robot movement velocity commands
+
 ##### Published Topics
-/mobile_base/mobile_base_controller/odom([nav_msgs/Odometry](http://docs.ros.org/api/nav_msgs/html/msg/Odometry.html))\
-&emsp;Odometry information calculated by the mobile platform using encoders
-
-/handsfree/imu_data([sensor_msgs/Imu](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Imu.html))\
-&emsp;IMU attitude information obtained from the mobile platform's nine-axis sensor
-
-/handsfree/robot_state(sc_msgs)\
-&emsp;Low-level status information reported by the mobile platform, including system time, battery level, etc.
+- **`/mobile_base/mobile_base_controller/odom`** ([nav_msgs/Odometry](http://docs.ros.org/api/nav_msgs/html/msg/Odometry.html))
+  - Odometry information calculated by the mobile platform using encoders
+- **`/handsfree/imu_data`** ([sensor_msgs/Imu](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Imu.html))
+  - IMU attitude information obtained from the mobile platform's nine-axis sensor
+- **`/handsfree/robot_state`** (sc_msgs)
+  - Low-level status information reported by the mobile platform, including system time, battery level, etc.
 
 ##### Parameters
-~odom_linear_scale_correction(double, default: 1.0)\
-&emsp;Odometry linear movement error correction coefficient\
-~odom_angle_scale_correction(double, default: 1.0)\
-&emsp;Odometry rotation error correction coefficient\
-~serial_port(string, default: "/dev/SCRobot")\
-&emsp;Robot mobile platform USB binding port\
-~base_mode(string, default: "4omni-wheel")\
-&emsp;Mobile platform mechanical structure type\
-~with_arm(bool, default: False)\
-&emsp;Whether equipped with robotic arm\
-~controller_freq(double, default: 100)\
-&emsp;Mobile platform refresh rate
+- **`~odom_linear_scale_correction`** (double, default: `1.0`)
+  - Odometry linear movement error correction coefficient
+- **`~odom_angle_scale_correction`** (double, default: `1.0`)
+  - Odometry rotation error correction coefficient
+- **`~serial_port`** (string, default: `"/dev/SCRobot"`)
+  - Robot mobile platform USB binding port
+- **`~base_mode`** (string, default: `"4omni-wheel"`)
+  - Mobile platform mechanical structure type
+- **`~with_arm`** (bool, default: `false`)
+  - Whether equipped with robotic arm
+- **`~controller_freq`** (double, default: `100`)
+  - Mobile platform refresh rate
 
 #### mecanum_teleop_key
 ROS node for controlling the omnidirectional intelligent mobile platform using keyboard
+
 ##### Subscribed Topics
 None
+
 ##### Published Topics
-/mobile_base/mobile_base_controller/cmd_vel([geometry_msgs/Twist](http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html))\
-&emsp;Mobile platform motion velocity control topic, receives robot movement velocity commands
+- **`/mobile_base/mobile_base_controller/cmd_vel`** ([geometry_msgs/Twist](http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html))
+  - Mobile platform motion velocity control topic, receives robot movement velocity commands
 
 ### 3) C/C++ Implementation Architecture
 
@@ -1165,23 +1167,27 @@ roslaunch rplidar_ros rplidar.launch
 ### 3) Nodes
 #### rplidar Node
 Drive rplidar_a2 and publish scan data
+
 ##### Subscribed Topics
 None
+
 ##### Published Topics
-/scan([sensor_msgs/LaserScan](http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/LaserScan.html))
+- **`/scan`** ([sensor_msgs/LaserScan](http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/LaserScan.html))
+  - 2D laser scan data from the RPLidar
+
 ##### Parameters
-serial_port(string，default: "/dev/rplidar"）\
-&emsp;Serial port name used in the system\
-serial_baudrate(int，default: 115200)\
-&emsp;Serial port baud rate\
-frame_id(String，default=laser_frame）\
-&emsp;Coordinate system name of the device\
-inverted (bool, default: false)\
-&emsp;Indicates whether the lidar is mounted upside down\
-angle_compensate (bool, default: false)\
-&emsp;Whether angle compensation is needed\
-scan_mode (string, default: std::string())\
-&emsp;Scanning mode of the lidar.
+- **`serial_port`** (string, default: `"/dev/rplidar"`)
+  - Serial port name used in the system
+- **`serial_baudrate`** (int, default: `115200`)
+  - Serial port baud rate
+- **`frame_id`** (string, default: `"laser_frame"`)
+  - Coordinate system name of the device
+- **`inverted`** (bool, default: `false`)
+  - Indicates whether the lidar is mounted upside down
+- **`angle_compensate`** (bool, default: `false`)
+  - Whether angle compensation is needed
+- **`scan_mode`** (string, default: `""`)
+  - Scanning mode of the lidar
 
 ## 5.3 realsense2_camera
 ### 1) Overview
@@ -1196,24 +1202,29 @@ roslaunch realsense2_camera rs_camera.launch aligned_depth:=true
 ### 3) Nodes
 #### realsense2_camera_nodelet
 Drive realsense D435 and publish image data
+
 ##### Subscribed Topics
 None
+
 ##### Published Topics
-###### Color camera
-/camera/color/camera_info ([sensor_msgs/CameraInfo](http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/CameraInfo.html))\
-&emsp;Camera calibration and metadata\
-/camera/color/image_raw ([sensor_msgs/Image](http://docs.ros.org/jade/api/sensor_msgs/html/msg/Image.html))\
-&emsp;Color image captured by the camera in RGB format.
-###### Depth camera
-/camera/depth/camera_info ([sensor_msgs/CameraInfo](http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/CameraInfo.html))\
-&emsp;Camera calibration and metadata\
-/camera/depth/image_raw ([sensor_msgs/Image](http://docs.ros.org/jade/api/sensor_msgs/html/msg/Image.html))\
-&emsp;Depth image captured by the camera, pixel values are uint16 depth values.\
-/camera/aligned_depth_to_color/image_raw ([sensor_msgs/Image](http://docs.ros.org/jade/api/sensor_msgs/html/msg/Image.html))\
-&emsp;Depth image aligned to RGB image perspective, pixel values are uint16 depth values.\
+
+###### Color Camera
+- **`/camera/color/camera_info`** ([sensor_msgs/CameraInfo](http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/CameraInfo.html))
+  - Camera calibration and metadata
+- **`/camera/color/image_raw`** ([sensor_msgs/Image](http://docs.ros.org/jade/api/sensor_msgs/html/msg/Image.html))
+  - Color image captured by the camera in RGB format
+
+###### Depth Camera
+- **`/camera/depth/camera_info`** ([sensor_msgs/CameraInfo](http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/CameraInfo.html))
+  - Camera calibration and metadata
+- **`/camera/depth/image_raw`** ([sensor_msgs/Image](http://docs.ros.org/jade/api/sensor_msgs/html/msg/Image.html))
+  - Depth image captured by the camera, pixel values are uint16 depth values
+- **`/camera/aligned_depth_to_color/image_raw`** ([sensor_msgs/Image](http://docs.ros.org/jade/api/sensor_msgs/html/msg/Image.html))
+  - Depth image aligned to RGB image perspective, pixel values are uint16 depth values
+
 ##### Parameters
-align_depth (bool, default: false)\
-&emsp;Indicates whether to use aligned depth image\
+- **`align_depth`** (bool, default: `false`)
+  - Indicates whether to use aligned depth image
 
 For more parameters and features, please see [realsense_ros](https://github.com/IntelRealSense/realsense-ros)
 
